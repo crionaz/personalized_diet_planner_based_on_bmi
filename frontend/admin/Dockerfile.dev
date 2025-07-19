@@ -1,0 +1,28 @@
+# Development Dockerfile for admin
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Install git for development
+RUN apk add --no-cache git
+
+# Create non-root user
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S admin -u 1001
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install
+
+# Change ownership
+RUN chown -R admin:nodejs /app
+USER admin
+
+# Expose port
+EXPOSE 3001
+
+# Start development server
+CMD ["npm", "run", "dev"]

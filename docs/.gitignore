@@ -1,0 +1,111 @@
+# ===================================
+# DOCUMENTATION GITIGNORE
+# ===================================
+
+# Build outputs
+_build/
+.doctrees/
+_static/
+_templates/
+build/
+site/
+
+# Sphinx
+.sphinx/
+.doctrees/
+
+# MkDocs
+site/
+
+# GitBook
+_book/
+.grunt/
+
+# VuePress
+.vuepress/dist/
+
+# Docusaurus
+.docusaurus/
+build/
+
+# mdBook
+book/
+
+# Hugo
+public/
+resources/
+
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Gatsby
+.cache/
+public/
+
+# Temporary files
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+
+# Node.js (if using any Node.js based doc generators)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python (if using Sphinx or similar)
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# PDF outputs
+*.pdf
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc

@@ -1,0 +1,1 @@
+export { BMICalculator } from './BMICalculator';

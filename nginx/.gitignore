@@ -1,0 +1,91 @@
+# ===================================
+# NGINX GITIGNORE
+# ===================================
+
+# Logs
+*.log
+access.log
+error.log
+logs/
+
+# Cache files
+*.cache
+cache/
+.cache/
+
+# Temporary files
+*.tmp
+*.temp
+.tmp/
+tmp/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# SSL certificates and keys
+*.pem
+*.key
+*.crt
+*.cert
+*.csr
+*.p12
+*.pfx
+ssl/
+certs/
+
+# Configuration overrides
+*.local.conf
+local/
+override/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Generated configuration files
+generated/
+
+# Runtime files
+*.pid
+run/
+var/
+
+# Nginx modules
+modules/
+*.so
+
+# Test configuration
+test/
+testing/
+
+# Docker volumes (if mounted)
+html/
+www/
+public/
+
+# Let's Encrypt
+.well-known/
+certbot/
+
+# Environment specific configs
+nginx.dev.conf
+nginx.prod.conf
+nginx.staging.conf
+nginx.test.conf
+
+# Secrets
+secrets.conf
+.secrets/
