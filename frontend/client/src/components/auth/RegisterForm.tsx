@@ -5,10 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { Button, Input, Card, CardContent } from '../ui';
 import { useAuth } from '../../hooks/useAuth';
-import { RegisterData } from '../../../../shared/types';
+import { RegisterRequest } from '@shared/index';
 
 const registerSchema = z.object({
-  name: z.string().min(2, 'Name must be at least 2 characters'),
+  firstName: z.string().min(2, 'First name must be at least 2 characters'),
+  lastName: z.string().min(2, 'Last name must be at least 2 characters'),
   email: z.string().email('Please enter a valid email address'),
   password: z
     .string()
@@ -43,7 +44,7 @@ const RegisterForm: React.FC = () => {
     setIsLoading(true);
     try {
       const { confirmPassword, ...registerData } = data;
-      await registerUser(registerData as RegisterData);
+      await registerUser(registerData as RegisterRequest);
       navigate('/dashboard');
     } catch (error) {
       setError('root', {
@@ -76,11 +77,34 @@ const RegisterForm: React.FC = () => {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               <Input
-                label="Full name"
+                label="First name"
                 type="text"
-                autoComplete="name"
-                error={errors.name?.message}
-                {...register('name')}
+                autoComplete="given-name"
+                error={errors.firstName?.message}
+                {...register('firstName')}
+                leftIcon={
+                  <svg
+                    className="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                }
+              />
+
+              <Input
+                label="Last name"
+                type="text"
+                autoComplete="family-name"
+                error={errors.lastName?.message}
+                {...register('lastName')}
                 leftIcon={
                   <svg
                     className="h-5 w-5"

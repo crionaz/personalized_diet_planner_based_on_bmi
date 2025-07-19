@@ -34,7 +34,7 @@ export class UserService {
    */
   async getProfile(): Promise<User> {
     try {
-      const response: AxiosResponse<ApiResponse<{ user: User }>> = await apiClient.get('/users/profile');
+      const response: AxiosResponse<ApiResponse<{ user: User }>> = await apiClient.get('/auth/profile');
       console.log('Get profile response:', response.data);
       return response.data.data!.user;
     } catch (error: any) {

@@ -22,6 +22,7 @@ export interface User {
   firstName: string;
   lastName: string;
   fullName?: string;
+  name?: string; // Legacy alias for fullName or computed from firstName + lastName
   avatar?: string;
   role: UserRole;
   permissions: Permission[];
@@ -167,17 +168,34 @@ export interface ResetPasswordRequest {
 export interface BMIRecord {
   id: string;
   userId: string;
-  date: string;
   weight: number;
   height: number;
   bmi: number;
   category: 'underweight' | 'normal' | 'overweight' | 'obese';
-  bodyFat?: number;
+  bodyFatPercentage?: number;
   muscleMass?: number;
+  measurementDate: string;
+  date: string; // Legacy alias for measurementDate
+  notes?: string;
   createdAt: string;
-  updatedAt?: string;
+  updatedAt: string;
 }
 
+export interface BMICalculationResult {
+  bmi: number;
+  category: string;
+  weight: number;
+  height: number;
+}
+
+export interface BMICalculationRequest {
+  weight: number;
+  height: number;
+  bodyFatPercentage?: number;
+  muscleMass?: number;
+}
+
+// Legacy alias for backward compatibility
 export interface CalculateBMIRequest {
   weight: number;
   height: number;
@@ -188,27 +206,40 @@ export interface RecordBMIRequest {
   height: number;
   bmi?: number; // Optional, can be calculated server-side
   category?: 'underweight' | 'normal' | 'overweight' | 'obese';
-  date?: string;
-  bodyFat?: number;
+  measurementDate?: string;
+  bodyFatPercentage?: number;
+  bodyFat?: number; // Legacy alias for bodyFatPercentage
   muscleMass?: number;
+  notes?: string;
 }
 
-export interface BMICalculationResult {
+export interface BMICalculationResponse {
   bmi: number;
   category: string;
-  weight: number;
-  height: number;
+  recommendation: string;
+  healthyWeightRange: {
+    min: number;
+    max: number;
+  };
 }
 
 export interface BMIStats {
   totalRecords: number;
-  recentRecords: number;
-  trend: 'increasing' | 'decreasing' | 'stable';
-  weightChange: number;
-  bmiChange: number;
-  categoryDistribution: Record<string, number>;
-  latestBMI: number | null;
-  latestCategory: string | null;
+  averageBMI: number;
+  latestBMI: number;
+  bmiTrend: 'increasing' | 'decreasing' | 'stable';
+  trend: 'increasing' | 'decreasing' | 'stable'; // Legacy alias for bmiTrend
+  categoryDistribution: {
+    underweight: number;
+    normal: number;
+    overweight: number;
+    obese: number;
+  };
+  weightChange: {
+    period: string;
+    change: number;
+    percentage: number;
+  };
 }
 
 // Admin DTOs
@@ -240,57 +271,6 @@ export type Status = 'idle' | 'loading' | 'succeeded' | 'failed';
 export type ThemeMode = 'light' | 'dark' | 'system';
 export type SortOrder = 'asc' | 'desc';
 export type ResponseStatus = 'success' | 'error' | 'warning' | 'info';
-
-// BMI Types
-export interface BMIRecord {
-  id: string;
-  userId: string;
-  weight: number;
-  height: number;
-  bmi: number;
-  category: 'underweight' | 'normal' | 'overweight' | 'obese';
-  bodyFatPercentage?: number;
-  muscleMass?: number;
-  measurementDate: string;
-  notes?: string;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface BMICalculationRequest {
-  weight: number;
-  height: number;
-  bodyFatPercentage?: number;
-  muscleMass?: number;
-}
-
-export interface BMICalculationResponse {
-  bmi: number;
-  category: string;
-  recommendation: string;
-  healthyWeightRange: {
-    min: number;
-    max: number;
-  };
-}
-
-export interface BMIStats {
-  totalRecords: number;
-  averageBMI: number;
-  latestBMI: number;
-  bmiTrend: 'increasing' | 'decreasing' | 'stable';
-  categoryDistribution: {
-    underweight: number;
-    normal: number;
-    overweight: number;
-    obese: number;
-  };
-  weightChange: {
-    period: string;
-    change: number;
-    percentage: number;
-  };
-}
 
 // Meal Types
 export interface Meal {

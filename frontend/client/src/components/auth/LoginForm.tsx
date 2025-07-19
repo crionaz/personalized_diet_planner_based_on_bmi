@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 import { Button, Input, Card, CardContent } from '../ui';
 import { useAuth } from '../../hooks/useAuth';
-import { LoginCredentials } from '../../../../shared/types';
+import { LoginRequest } from '@shared/index';
 
 const loginSchema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -15,7 +15,6 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 const LoginForm: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -29,16 +28,13 @@ const LoginForm: React.FC = () => {
   });
 
   const onSubmit = async (data: LoginFormData) => {
-    setIsLoading(true);
     try {
-      await login(data as LoginCredentials);
+      await login(data as LoginRequest);
       navigate('/dashboard');
     } catch (error) {
       setError('root', {
         message: error instanceof Error ? error.message : 'Login failed',
       });
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -129,10 +125,8 @@ const LoginForm: React.FC = () => {
               <Button
                 type="submit"
                 className="w-full"
-                loading={isLoading}
-                disabled={isLoading}
               >
-                {isLoading ? 'Signing in...' : 'Sign in'}
+                Sign in
               </Button>
             </form>
           </CardContent>

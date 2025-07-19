@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
 import { authService } from '../../services/authService';
-import { LoginCredentials, RegisterData, User, AuthResponse } from '../../../../shared/types';
+import { LoginRequest, RegisterRequest, User, AuthResponse } from '@shared/index';
 
 interface AuthState {
   user: User | null;
@@ -19,7 +19,7 @@ const initialState: AuthState = {
 // Async thunks
 export const login = createAsyncThunk(
   'auth/login',
-  async (credentials: LoginCredentials, { rejectWithValue }) => {
+  async (credentials: LoginRequest, { rejectWithValue }) => {
     try {
       const response = await authService.login(credentials);
       return response;
@@ -31,7 +31,7 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   'auth/register',
-  async (userData: RegisterData, { rejectWithValue }) => {
+  async (userData: RegisterRequest, { rejectWithValue }) => {
     try {
       const response = await authService.register(userData);
       return response;

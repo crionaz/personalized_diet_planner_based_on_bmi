@@ -7,13 +7,13 @@ import {
   refreshToken as refreshTokenThunk,
   updateProfile as updateProfileThunk
 } from '../store/slices/authSlice';
-import { LoginCredentials, RegisterData, User } from '../../../shared/types';
+import { LoginRequest, RegisterRequest, User } from '@shared/index';
 
 export const useAuth = () => {
   const dispatch = useAppDispatch();
   const { user, isAuthenticated, loading, error } = useAppSelector(state => state.auth);
 
-  const login = useCallback(async (credentials: LoginCredentials) => {
+  const login = useCallback(async (credentials: LoginRequest) => {
     try {
       await dispatch(loginThunk(credentials)).unwrap();
     } catch (error) {
@@ -21,7 +21,7 @@ export const useAuth = () => {
     }
   }, [dispatch]);
 
-  const register = useCallback(async (userData: RegisterData) => {
+  const register = useCallback(async (userData: RegisterRequest) => {
     try {
       await dispatch(registerThunk(userData)).unwrap();
     } catch (error) {

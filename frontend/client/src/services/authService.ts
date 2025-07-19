@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { LoginCredentials, RegisterData, User, AuthResponse } from '../../../shared/types';
+import { LoginRequest, RegisterRequest, User, AuthResponse } from '@shared/index';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001/api';
 
@@ -79,7 +79,7 @@ apiClient.interceptors.response.use(
 );
 
 export class AuthService {
-  async login(credentials: LoginCredentials): Promise<AuthResponse> {
+  async login(credentials: LoginRequest): Promise<AuthResponse> {
     try {
       const response: AxiosResponse<any> = await apiClient.post('/auth/login', credentials);
       console.log('Client AuthService login response:', response.data);
@@ -91,7 +91,7 @@ export class AuthService {
       // Return the properly structured data
       return {
         user: response.data.data.user,
-        accessToken: token,
+        token,
         refreshToken: response.data.data.refreshToken
       };
     } catch (error: any) {
@@ -100,7 +100,7 @@ export class AuthService {
     }
   }
 
-  async register(userData: RegisterData): Promise<AuthResponse> {
+  async register(userData: RegisterRequest): Promise<AuthResponse> {
     try {
       const response: AxiosResponse<any> = await apiClient.post('/auth/register', userData);
       console.log('Client AuthService register response:', response.data);
@@ -112,7 +112,7 @@ export class AuthService {
       // Return the properly structured data
       return {
         user: response.data.data.user,
-        accessToken: token,
+        token,
         refreshToken: response.data.data.refreshToken
       };
     } catch (error: any) {
@@ -144,7 +144,7 @@ export class AuthService {
       // Return the properly structured data
       return {
         user: response.data.data.user,
-        accessToken: token,
+        token,
         refreshToken: response.data.data.refreshToken
       };
     } catch (error: any) {

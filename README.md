@@ -8,7 +8,7 @@ A comprehensive health and nutrition solution developed for the Bayer Hackathon,
 
 ## Squad and Team Details
 
-- **Abdul Zelani (<abdul.zelani@hcltech.com>)**
+- **Abdul Zelani (<abdul.zelani@hcltech.com>, <azelani31@gmail.com.com>)**
   - Role: Technical Lead
   - Skills:
     - **Backend**: Node.js with Express, Django.
@@ -37,11 +37,13 @@ A comprehensive health and nutrition solution developed for the Bayer Hackathon,
 ## Project Requirements
 
 ### Overview
+
 The Personalized Diet Planner is a comprehensive web application designed to help users achieve their health and nutrition goals through data-driven, personalized meal planning. The system calculates users' Body Mass Index (BMI) and creates customized diet plans tailored to their individual health metrics, lifestyle preferences, and objectives.
 
 ### Core Requirements
 
 #### 1. User Management & Authentication
+
 - **Secure Registration & Login**: JWT-based authentication system with secure password handling
 - **Comprehensive Profile Setup**: Capture essential user data including:
     - Personal information (age, weight, height, gender)
@@ -51,12 +53,14 @@ The Personalized Diet Planner is a comprehensive web application designed to hel
 - **Profile Management**: Allow users to update their information and track changes over time
 
 #### 2. BMI Calculation & Health Assessment
+
 - **Real-time BMI Calculator**: Instant BMI calculation based on user inputs
 - **Health Category Classification**: Categorize users as underweight, normal weight, overweight, or obese
 - **Progress Tracking**: Monitor BMI changes over time with visual representations
 - **Health Metrics Dashboard**: Display current health status and progress indicators
 
 #### 3. Personalized Diet Plan Generation
+
 - **Algorithm-Driven Meal Planning**: Generate customized daily and weekly meal plans using:
     - BMI calculations and health goals
     - Caloric needs based on activity level and objectives
@@ -67,6 +71,7 @@ The Personalized Diet Planner is a comprehensive web application designed to hel
 - **Plan Adaptability**: Automatically adjust plans based on updated user metrics
 
 #### 4. Nutritional Tracking & Information
+
 - **Detailed Nutritional Data**: Provide comprehensive nutritional information for each meal including:
     - Calorie content
     - Macro-nutrients (protein, carbs, fats)
@@ -77,6 +82,7 @@ The Personalized Diet Planner is a comprehensive web application designed to hel
 - **Custom Food Entry**: Enable users to add custom foods not in the database
 
 #### 5. Interactive User Dashboard
+
 - **Health Overview**: Display current BMI, weight, and progress towards goals
 - **Diet Plan Visualization**: Present meal plans in an intuitive, calendar-like interface
 - **Progress Charts**: Visual representation of weight loss/gain progress over time
@@ -84,6 +90,7 @@ The Personalized Diet Planner is a comprehensive web application designed to hel
 - **Goal Tracking**: Monitor progress towards health objectives with milestone indicators
 
 #### 6. Administrative Features
+
 - **Meal Database Management**: Admin interface for adding, editing, and managing meal recipes
 - **User Analytics**: System-wide statistics and user engagement metrics
 - **Content Moderation**: Tools for managing user-generated content and feedback
@@ -407,7 +414,8 @@ db.foodLogs.createIndex({ date: 1 });
 ## API Endpoints
 
 ### Authentication Endpoints
-```
+
+```bash
 POST   /api/auth/register     - User registration
 POST   /api/auth/login        - User login
 POST   /api/auth/logout       - User logout
@@ -417,7 +425,8 @@ POST   /api/auth/reset-password  - Reset password with token
 ```
 
 ### User Management Endpoints
-```
+
+```bash
 GET    /api/users/profile     - Get current user profile
 PUT    /api/users/profile     - Update user profile
 PUT    /api/users/health-metrics - Update health metrics
@@ -433,7 +442,8 @@ DELETE /api/admin/users/:id   - Delete user (admin)
 ```
 
 ### BMI Endpoints
-```
+
+```bash
 POST   /api/bmi/calculate     - Calculate BMI (no save)
 POST   /api/bmi/record        - Save BMI record
 GET    /api/bmi/history       - Get user's BMI history
@@ -442,7 +452,8 @@ DELETE /api/bmi/record/:id    - Delete BMI record
 ```
 
 ### Meal Management Endpoints
-```
+
+```bash
 GET    /api/meals             - List meals (with filters)
 GET    /api/meals/:id         - Get meal details
 GET    /api/meals/search      - Search meals
@@ -455,7 +466,8 @@ POST   /api/admin/meals/bulk  - Bulk import meals
 ```
 
 ### Diet Plan Endpoints
-```
+
+```bash
 POST   /api/diet-plans/generate - Generate diet plan
 GET    /api/diet-plans/current  - Get current active plan
 GET    /api/diet-plans/history  - Get plan history
@@ -466,7 +478,8 @@ POST   /api/diet-plans/:id/pause    - Pause a plan
 ```
 
 ### Food Tracking Endpoints
-```
+
+```bash
 POST   /api/food-logs         - Log food consumption
 GET    /api/food-logs/today   - Get today's log
 GET    /api/food-logs/date/:date - Get log by date
@@ -476,7 +489,8 @@ DELETE /api/food-logs/:id/meal/:mealId - Remove meal from log
 ```
 
 ### Analytics Endpoints
-```
+
+```bash
 GET    /api/analytics/progress - Get weight progress
 GET    /api/analytics/adherence - Get diet adherence stats
 GET    /api/analytics/nutrition - Get nutrition summary
@@ -487,9 +501,14 @@ GET    /api/admin/analytics/overview - System overview
 GET    /api/admin/analytics/users    - User statistics
 ```
 
+## Swagger Documentation
+
+The API documentation is available at `/api-docs` and provides detailed information on all endpoints, request/response formats, and examples.
+
 ## Technology Stack & Tools
 
 ### Backend Technologies
+
 ```yaml
 Core:
   - Node.js: v22+ LTS
@@ -527,6 +546,7 @@ Development:
 ```
 
 ### Frontend Technologies
+
 ```yaml
 Core:
   - React: v18+
@@ -563,6 +583,7 @@ Development:
 ```
 
 ### DevOps & Deployment
+
 ```yaml
 Version Control:
   - Git & GitHub
@@ -587,6 +608,7 @@ Deployment:
 ## Security Considerations
 
 ### Authentication & Authorization
+
 ```mermaid
 sequenceDiagram
     participant User
@@ -607,6 +629,7 @@ sequenceDiagram
 ```
 
 ### Security Best Practices
+
 1. **Authentication**
    - Use bcrypt with salt rounds >= 10
    - Implement JWT with short expiration (15 min access, 7 days refresh)
@@ -638,6 +661,7 @@ sequenceDiagram
    - Session management
 
 ### Security Checklist
+
 ```yaml
 Authentication:
   ✓ Password complexity requirements
@@ -664,6 +688,7 @@ Data Security:
 ## Testing Strategies
 
 ### Testing Pyramid
+
 ```mermaid
 graph TD
     E2E[E2E Tests<br/>10%]
@@ -679,6 +704,7 @@ graph TD
 ```
 
 ### Backend Testing
+
 ```javascript
 // Unit Test Example
 describe('BMI Calculator Service', () => {
@@ -708,6 +734,7 @@ describe('Auth API', () => {
 ```
 
 ### Frontend Testing
+
 ```javascript
 // Component Test Example
 describe('BMICalculator Component', () => {
@@ -731,6 +758,7 @@ describe('BMICalculator Component', () => {
 ```
 
 ### Testing Strategy
+
 1. **Unit Tests (60%)**
    - Service functions
    - Utility functions
@@ -750,6 +778,7 @@ describe('BMICalculator Component', () => {
    - Food logging
 
 ### Testing Tools
+
 ```yaml
 Backend:
   - Jest: Test runner
@@ -767,6 +796,7 @@ Frontend:
 ## Implementation Best Practices
 
 ### Code Organization
+
 ```
 diet-planner/
 ├── backend/
@@ -817,6 +847,7 @@ diet-planner/
 ```
 
 ### Error Handling
+
 ```typescript
 // Custom error class
 class AppError extends Error {
@@ -849,6 +880,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
 ```
 
 ### API Response Format
+
 ```typescript
 // Success response
 {
@@ -877,7 +909,9 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
 ```
 
 ### Database Best Practices
+
 1. **Indexing**
+
    ```javascript
    userSchema.index({ email: 1 }, { unique: true });
    userSchema.index({ 'profile.firstName': 1, 'profile.lastName': 1 });
@@ -885,6 +919,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
    ```
 
 2. **Virtuals for Calculated Fields**
+
    ```javascript
    userSchema.virtual('age').get(function() {
      return Math.floor((Date.now() - this.profile.dateOfBirth) / 31557600000);
@@ -892,6 +927,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
    ```
 
 3. **Middleware for Data Consistency**
+
    ```javascript
    userSchema.pre('save', async function(next) {
      if (this.isModified('password')) {
@@ -904,6 +940,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
 ## User Interface Design
 
 ### User Client Pages
+
 1. **Landing Page**
    - Hero section with CTA
    - Features overview
@@ -946,6 +983,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
    - Goal progress
 
 ### Admin Client Pages
+
 1. **Admin Dashboard**
    - User statistics
    - System health
@@ -968,6 +1006,7 @@ const errorHandler = (err: AppError, req: Request, res: Response, next: NextFunc
    - System usage
 
 ### UI Component Examples
+
 ```typescript
 // Reusable BMI Display Component
 interface BMIDisplayProps {
@@ -1005,6 +1044,7 @@ export const BMIDisplay: React.FC<BMIDisplayProps> = ({ value, category, date })
 ## Development Roadmap
 
 ### Phase 1: Foundation
+
 - [ ] Project setup and configuration
 - [ ] Database schema implementation
 - [ ] Authentication system
@@ -1012,6 +1052,7 @@ export const BMIDisplay: React.FC<BMIDisplayProps> = ({ value, category, date })
 - [ ] BMI calculation service
 
 ### Phase 2: Core Features
+
 - [ ] Meal management system
 - [ ] Diet plan generation algorithm
 - [ ] Food tracking functionality
@@ -1019,6 +1060,7 @@ export const BMIDisplay: React.FC<BMIDisplayProps> = ({ value, category, date })
 - [ ] User dashboard
 
 ### Phase 3: Enhancement
+
 - [ ] Analytics and reporting
 - [ ] Admin panel
 - [ ] Advanced meal search
@@ -1026,6 +1068,7 @@ export const BMIDisplay: React.FC<BMIDisplayProps> = ({ value, category, date })
 - [ ] Performance optimization
 
 ### Phase 4: Polish & Deploy
+
 - [ ] Comprehensive testing
 - [ ] Security audit
 - [ ] Documentation
@@ -1034,20 +1077,10 @@ export const BMIDisplay: React.FC<BMIDisplayProps> = ({ value, category, date })
 
 ## Conclusion
 
-This MVP design provides a solid foundation for building a personalized diet planner application. The architecture is scalable, secure, and follows industry best practices. The modular design allows for easy maintenance and future enhancements.
+This MVP design provides a solid foundation for building a personalized diet planner application. The architecture is scalable, secure, and follows industry best practices. The modular design allows for easy maintenance and future enhancements. I have used Service-Oriented Architecture (SOA) principles to ensure that each component can evolve independently while maintaining a cohesive user experience.
 
-### Key Success Factors:
-1. **User-Centric Design**: Focus on simplicity and usability
-2. **Data Accuracy**: Ensure nutritional information is accurate
-3. **Performance**: Optimize for quick diet plan generation
-4. **Security**: Protect user health data
-5. **Scalability**: Design for future growth
+---
 
-### Next Steps:
-1. Set up development environment
-2. Create project repositories
-3. Implement CI/CD pipeline
-4. Begin Phase 1 development
-5. Regular code reviews and testing
-
-Remember to iterate based on user feedback and continuously improve the application to meet user needs effectively.
+BY Abdul Zelani
+HCLTech
+abdul.zelani@hcltech.com
